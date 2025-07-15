@@ -1,0 +1,14 @@
+/* Mis eventos */
+.mis-eventos-header {
+  text-align: center;
+  color: #2d2d72;
+  margin-bottom: 1.5rem;
+}
+.mis-eventos-botones {
+  display: flex;
+  gap: 0.7rem;
+  margin-top: 0.5rem;
+}
+.mis-eventos-botones button {
+  flex: 1;
+} 

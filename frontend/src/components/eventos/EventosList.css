@@ -1,0 +1,13 @@
+/* Lista de eventos */
+.eventos-header {
+  text-align: center;
+  color: #2d2d72;
+  margin-bottom: 1.5rem;
+}
+.eventos-paginacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+} 

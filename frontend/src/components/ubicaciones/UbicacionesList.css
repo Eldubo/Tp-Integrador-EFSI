@@ -1,0 +1,26 @@
+/* Ubicaciones */
+.ubicaciones-title {
+  text-align: center;
+  color: #48c6ef;
+  margin-bottom: 1.5rem;
+}
+.ubicaciones-form {
+  background: #f8f9fa;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.06);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.ubicaciones-form input {
+  border: 1.5px solid #48c6ef33;
+}
+.ubicaciones-form button {
+  margin-top: 0.5rem;
+}
+.ubicaciones-lista li {
+  background: #e3f6fd;
+  border-left: 4px solid #48c6ef;
+} 
