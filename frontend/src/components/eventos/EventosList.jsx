@@ -28,6 +28,12 @@ const EventosList = () => {
     }
   };
 
+/*
+GET /api/event/:id
+POST /api/event/:id/enrollment/
+DELETE /api/event/:id/enrollment/
+*/
+
   useEffect(() => {
     fetchEventos();
     // eslint-disable-next-line

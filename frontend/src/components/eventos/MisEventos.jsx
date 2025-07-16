@@ -12,7 +12,7 @@ const MisEventos = () => {
     setLoading(true);
     setError(null);
     try {
-      const data = await apiFetch('/event/', { params: { creadosPorMi: true } });
+      const data = await apiFetch('/event/', { params: { id: true } });
       setEventos(data.eventos || data.results || []);
     } catch (err) {
       setError(err?.error || 'Error al cargar mis eventos');

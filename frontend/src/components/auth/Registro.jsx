@@ -3,8 +3,10 @@ import { apiFetch } from '../../services/api';
 import './Register.css';
 
 const Register = () => {
+
   const [form, setForm] = useState({ email: '', password: '', confirmPassword: '' });
   const [error, setError] = useState(null);
+  const expresionMail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -16,6 +18,9 @@ const Register = () => {
     if (form.password !== form.confirmPassword) {
       setError('Las contraseñas no coinciden');
       return;
+    }
+    if(expresionMail.test(form.email)){
+      setError('Mail inválido');
     }
     try {
       await apiFetch('/user/register', {

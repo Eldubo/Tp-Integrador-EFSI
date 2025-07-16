@@ -3,7 +3,8 @@ import { apiFetch } from '../../services/api';
 import './CrearEventoForm.css';
 
 const CrearEventoForm = () => {
-  const [form, setForm] = useState({ nombre: '', descripcion: '', fecha: '', precio: '', lugar: '', capacidad: '' });
+  const [form, setForm] = useState({ nombre: '', descripcion: '', idCategoria: '', fechaInicio: '', duracion: '', precio: '', idUbicacion: '', capacidad: '', habilitadaInscripcion: '', idCreador:'' });
+  //Poner nombres correctos
   const [error, setError] = useState(null);
 
   const handleChange = (e) => {
@@ -15,6 +16,8 @@ const CrearEventoForm = () => {
     setError(null);
     if (!form.nombre || !form.descripcion || !form.fecha || !form.precio || !form.lugar || !form.capacidad) {
       setError('Todos los campos son obligatorios');
+      //Hacer validación con TODOS los campos
+      //Validar q la capacidad máx no exceda la capacidad del lugar (o lo hace en el back y alcanza?)
       return;
     }
     if (Number(form.precio) < 0 || Number(form.capacidad) < 0) {
@@ -42,7 +45,7 @@ const CrearEventoForm = () => {
         <input type="date" name="fecha" value={form.fecha} onChange={handleChange} required />
         <input type="number" name="precio" placeholder="Precio" value={form.precio} onChange={handleChange} required />
         <input name="lugar" placeholder="Lugar" value={form.lugar} onChange={handleChange} required />
-        <input type="number" name="capacidad" placeholder="Capacidad" value={form.capacidad} onChange={handleChange} required />
+        <input type="number" name="capacidad" placeholder="Capacidad máxima" value={form.capacidad} onChange={handleChange} required />
         <button type="submit">Crear</button>
       </form>
       {error && <p className={error.includes('correctamente') ? 'success' : 'error'}>{error}</p>}
