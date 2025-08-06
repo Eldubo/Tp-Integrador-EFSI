@@ -1,36 +1,28 @@
-const API_URL = '/api';
+import axios from 'axios';
 
-export async function apiFetch(endpoint, { method = 'GET', body, headers = {}, params } = {}) {
-  let url = API_URL + endpoint;
-  if (params) {
-    const query = new URLSearchParams(params).toString();
-    url += '?' + query;
-  }
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
+});
 
+api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) {
-    headers['Authorization'] = `Bearer ${token}`;
+    config.headers.Authorization = `Bearer ${token}`;
   }
-  if (body && !(body instanceof FormData)) {
-    headers['Content-Type'] = 'application/json';
-    body = JSON.stringify(body);
-  }
+  return config;
+});
 
-  const response = await fetch(url, {
-    method,
-    headers,
-    body: method !== 'GET' && method !== 'HEAD' ? body : undefined,
-  });
-
-  let data;
-  try {
-    data = await response.json();
-  } catch (e) {
-    data = null;
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // Token expired or invalid, clear auth data
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
   }
+);
 
-  if (!response.ok) {
-    throw data || { error: 'Error de red o servidor' };
-  }
-  return data;
-} 
+export default api;
