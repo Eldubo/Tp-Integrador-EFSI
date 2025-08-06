@@ -15,10 +15,11 @@ const ProtectedRoute = ({ children }) => {
 
 const Router = () => (
   <Routes>
+    <Route path="/" element={<Navigate to="/eventos" />} />
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
-    <Route path="/eventos" element={<ProtectedRoute><EventosList /></ProtectedRoute>} />
-    <Route path="/eventos/:id" element={<ProtectedRoute><EventoDetalle /></ProtectedRoute>} />
+    <Route path="/eventos" element={<EventosList />} />
+    <Route path="/eventos/:id" element={<EventoDetalle />} />
     <Route path="/crear-evento" element={<ProtectedRoute><CrearEventoForm /></ProtectedRoute>} />
     <Route path="/ubicaciones" element={<ProtectedRoute><UbicacionesList /></ProtectedRoute>} />
     <Route path="/mis-eventos" element={<ProtectedRoute><MisEventos /></ProtectedRoute>} />

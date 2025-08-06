@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../services/api';
-import { useAuth } from '../context/AuthContext';
 import { useForm } from '../hooks/useForm';
-
+import './Login.css';
+import { useAuth } from '../context/AuthContext';
 function Login() {
   const { form, handleChange: handleFormChange } = useForm({ email: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
-
+  console.log('Renderizando login');
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
